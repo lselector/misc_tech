@@ -1,0 +1,96 @@
+Network Subnets
+
+CIDR = Classless Inter-Domain Routing
+
+  https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
+
+Question:
+  How to get the subnet in CIDR notation for a range of IP addresses?
+
+For example, what would be a subnet for these addresses:
+    192.168.2.225
+    192.168.2.226
+
+Total IP address takes 32 bit: 8+8+8+8
+For our case we can select subnet with 4 addresses:
+    192.168.2.224/30
+    (11000000.10101000.00000010.11100000)
+
+The four addresses will differ only in the last 4 bits of last byte:
+    11100000    224
+    11100001    225
+    11100010    226
+    11100011    227
+
+# -----------------------------------------------
+Subnet mask:
+    255.255.255.252
+    (11111111.11111111.11111111.11111100)
+
+# -----------------------------------------------
+Note - first and last addresses of any subnet
+can not be used, because they are reserved
+for subnet ID address (first) 
+and subnet Broadcast address (last):
+Subnet id:
+    192.168.2.224
+Subnet broadcast address:
+    192.168.2.227
+So we have only two addresses available for hosts:
+    192.168.2.225
+    192.168.2.226
+
+Here is a good youtube video explaining subnetting:
+Basics of Subnetting 
+How to find Subnet Mask, Network ID, Host IP Address from CIDR Value
+ - https://www.youtube.com/watch?v=q7wNcYliJ1Q
+
+# -----------------------------------------------
+There are python modules:
+ - https://stackoverflow.com/questions/24214441/ip-range-to-cidr-conversion-in-python
+
+Here are my tests:
+
+pip install netaddr
+
+ipython
+
+# -----------------------------------------------
+import netaddr
+ip1 = '123.123.123.225'
+ip2 = '123.123.123.226'
+cidrs = netaddr.iprange_to_cidrs(ip1,ip2)
+print(cidrs)
+
+Out: [IPNetwork('123.123.123.225/32'), IPNetwork('123.123.123.226/32')]
+
+netaddr.spanning_cidr([ip1,ip2])
+
+Out: IPNetwork('123.123.123.224/30')
+
+# -----------------------------------------------
+import ipaddress
+ip1 = '123.123.123.225'
+ip2 = '123.123.123.226'
+ipv4_1 = ipaddress.IPv4Address(ip1)
+ipv4_2 = ipaddress.IPv4Address(ip2)
+myrange = ipaddress.summarize_address_range(ipv4_1, ipv4_2)
+for ii in myrange:
+    print(ii)
+Out:
+  123.123.123.225/32
+  123.123.123.226/32
+
+ipn = ipaddress.IPv4Network('123.123.123.224/30')
+
+print(ipn.network_address.compressed)   # '123.123.123.224'
+print(ipn.broadcast_address.compressed) # '123.123.123.227'
+print(ipn.netmask.compressed)           # '255.255.255.252'
+print(ipn.hostmask.compressed)          # '0.0.0.3'
+for ip in ipn.hosts(): 
+    print(ip.compressed)
+Out:
+  123.123.123.225
+  123.123.123.226
+
+# -----------------------------------------------

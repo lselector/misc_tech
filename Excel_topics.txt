@@ -1,0 +1,104 @@
+Excel Training:
+
+Tabs and Ribbons, Document Windows, Navigation, Save, 
+Entering Data, Fonts, Fills, and Alignment, 
+Cut, Copy, and Paste, Paste Special, Undo and Redo, 
+move, find, replace value; Cell Styles, Comments, 
+Formatting - numbers, dates, currency, format painter
+
+Worksheets - create, delete, name, rename, move, 
+copy, hide, grouping worksheets
+
+Columns/rows - insert, delete (one or several), 
+Modifying Cell Width and Height, 
+Hiding and Unhiding Rows and Columns
+
+Formulas:
+  = ... + ...    Creating Formulas, AutoSum, 
+  Common Formulas, Searching for Formulas, 
+  Copying Formulas, 
+  Using Relative and Absolute References
+
+Changing Views
+  Workbook Views, Show/Hide, Zoom Features, 
+  Freeze Panes, Split Windows, Viewing Multiple Windows, 
+  Minimize The Ribbon, Worksheet Backgrounds
+
+AutoFill and Custom Lists
+  AutoFill a Series, AutoFill Non-Adjacent Cells, 
+  on Multiple Sheets, Creating Custom Lists, 
+  Series Formatting
+
+Conditional Formatting: Highlight Cells Rules, 
+Top/Bottom Rules, Data Bars, Color Scales, 
+Custom Formatting Rule
+
+Tables:
+  Insert a Table and Style Options, Add Rows and Columns, 
+  Perform a Function in a Table, 
+  Summarise With Pivot Table
+
+Data Tools:
+  Data Validation, Drop-Down Lists, Removing Duplicates, 
+  Text To Columns, Goal Seek, Scenario Manager
+
+Referencing Formulas:
+  Multiple Sheet References, 
+  Consolidating Data - With or Without Links, 
+  Trace the Precedents and Dependents, 
+  Using the Watch Window
+
+Ranges and Dates:
+  Cell Names, Named Ranges, Formulas with Cell Names, 
+  Date Formulas
+
+LOOKUP, VLOOKUP, & HLOOKUP
+
+IF Statement:
+  Nested IF, AND, OR, NOT, IFERROR, SUMIF, AVERAGEIF
+  COUNTIF & COUNTIFS, SUMIFS, AVERAGEIFS
+
+Text Formulas:
+  Case Formulas, Fix Number Fields, Trim Spaces, Substitute Text
+
+Charts: 
+  Instant Chart, chart types, Update Chart
+  Column Chart, Picture Fill, Adjust Chart Size
+  Line Chart, Scatter Chart
+  Formatting Charts - styles, layouts, title, legends, 
+    labels, axis options, data labels
+
+Pictures - insert/modify, shapes, SmartArt, themes, arrange
+
+Outline, Sort, Filter, and Subtotal
+  Group and Ungroup, Sort Data, Sort Multiple Levels
+  Filter Data, Advanced Filter
+  Conditional Sorting and Filtering
+  Sorting with Custom Lists, Subtotal
+
+PivotTables:
+  Creating PivotTables, Choosing Fields, PivotTable Layout
+  Filtering PivotTables, Modifying PivotTable Data, 
+  PivotCharts
+
+Protecting Data;
+  passwords, locking/unlocking cells
+
+Collaboration:
+  Inserting Hyperlinks, Sharing a Workbook, 
+  Track/Accept/Reject Changes
+  Mark as Final
+
+Printing
+  Print Area selection, page orientation, 
+  margins, scaling, etc.
+
+Saving a Workbook
+  save as Excel 97-2003 Workbook, as PDF, as Web Page, 
+       as xlsm (with macros)
+  AutoRecover Save Options
+  Templates
+
+Macros: 
+  record, assign to a button or run on opening a Workbook
+  Inspect/Modify a macro

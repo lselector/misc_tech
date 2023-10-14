@@ -1,0 +1,36 @@
+
+Vue.js, React, Angular
+NativeScript.org
+React native 
+Typescript
+Redox - state Management in react
+
+Mobile templates
+Shopify templates
+Loopback.io - uses typescript
+form.io - very good, uses mongo.db, opensource
+heroku.com
+Swagger.io
+Node Express - expresses.com
+Yeoman.io
+Mustache.github.io
+Kaleguy.github.io
+Fiddler
+
+Vue starter project
+Cli.vuejs.org
+
+GitHub pro
+
+Install node
+Install npm install -g  http-server
+...
+http-server
+
+lodash
+Require lodash/fp
+Line-reader
+String-tokenizer
+
+RxJS - reactive library - https://rxjs-dev.firebaseapp.com/
+node.js - https://nodejs.org/en/ - nonblocking I/O, call-back
