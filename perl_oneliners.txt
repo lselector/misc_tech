@@ -1,0 +1,77 @@
+
+# --------------------------------------------------------------
+# Perl one-liners
+# --------------------------------------------------------------
+
+# substitue one word with another in all files in a directory:
+perl -pi -e 's/word/another/g' *
+
+# dos-2-unix as a one-liner:
+perl -pi -e 's/\r\n/\n/' myscript.cgi
+
+# --------------------------------------------------------------
+# stripping the font tags:
+perl -0777 -pi -e 's/<\/?FONT[^>]*>//gi' filename
+
+# --------------------------------------------------------------
+# list CLASSPATH entries on separate lines (originally they are ":"-separated):
+echo $CLASSPATH | perl -e '$_=<>;s/:/\n/g;print;'
+
+# --------------------------------------------------------------
+# make a nice listing of files (use ls, find, grep to lacate files):
+ls *.java | perl -nle '$n=$_;$h="-"x60 . "\n";print "$h$n\n$h"; open(in,$n); map {chomp;print}<in>;' > ~/java.txt
+ls *.xsl | perl -ne '$n=$_;$h="-"x60 . "\n";print "$h$n$h"; open(in,$n); map {print}<in>;' > ~/xsl.txt
+ls *.java | perl -nle '$n=$_;$h="-"x60 . "\n";{local $/=undef;open(in,$n);$s=<in>;}print "$h$n\n$h$s\n";' > ~/java.txt
+perl -e '$h="-"x60 . "\n";for $n (<*.java>){{local $/=undef;open(in,$n);$s=<in>;}print "$h$n\n$h$s\n";}' > ~/ttt.txt
+
+# standalone:
+
+#! /usr/local/bin/perl
+map{open(IN,$_);print "-"x60 ."\n$_\n"."-"x60 ."\n";map{print}<IN>;close(IN);}glob("*.java");
+
+#! /usr/local/bin/perl
+$h="-"x60 . "\n";for $n (<*.java>){local $/=undef;open(IN,$n);$s=<IN>;print "$h$n\n$h$s\n";}
+
+#! /usr/local/bin/perl
+# getall.pl
+# usage: ls -1 * | xargs getall.pl > out.txt
+map{open(IN,$_);print "-"x60 ."\n$_\n"."-"x60 ."\n";map{print}<IN>;close(IN);} @ARGV;
+
+# --------------------------------------------------------------
+# rename many files simultaneously (here it renames *.tar into *.tar7):
+ls -1 *.tar | perl -nle '$old=$_;s/(\.+)tar/$1tar7/;rename($old, $_);' -
+
+# --------------------------------------------------------------
+# print help for all commands of perforce (p4) source control system:
+p4 help commands | perl -nle 'm/^\s+(\w+)\s/; print "$1\n";' - | xargs p4 help
+
+# --------------------------------------------------------------
+# sum first and last fields (using -a option to split input into @F):
+perl -lane 'print $F[0] + $F[-1]' *
+
+# --------------------------------------------------------------
+# identify text files:
+perl -le 'for(@ARGV) {print if -f && -T _}' *
+
+# --------------------------------------------------------------
+# remove (most) comments from C program:
+perl -0777 -pe 's{/\*.*?\*/}{}gs' foo.c
+
+# --------------------------------------------------------------
+# make file a month younger than today, defeating reaper daemons:
+perl -e '$X=24*60*60; utime(time(),time() + 30 * $X,@ARGV)' *
+
+# --------------------------------------------------------------
+# find first unused uid:
+perl -le '$i++ while getpwuid($i); print $i'
+
+# --------------------------------------------------------------
+# display reasonable manpath (072 is code of ":"):
+echo $PATH | perl -nl -072 -e 's![^/+]*$!man!&&-d&&!$s{$_}++&&push@m,$_;END{print"@m"}'
+
+# --------------------------------------------------------------
+# Print a message if a daylight savings time change occurs within the next 5 days:
+print "\aTIME CHANGE COMING!\n" if (localtime(time))[8] ne (localtime(time+5*24*60*60))[8];
+perl -e 'print "$_\n" for @INC'
+
+# --------------------------------------------------------------

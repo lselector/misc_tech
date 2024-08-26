@@ -1,0 +1,47 @@
+
+neo4j vs orientdb
+
+The comparisons are clearly in favor of Neo4j. 
+The only thing that sets OrientDB apart is that 
+it's a "jack of all trades": 
+  it's Document store, Graph DBMS, and Key-value store
+  
+ - https://stackshare.io/stackups/neo4j-vs-orientdb
+ - https://db-engines.com/en/system/Neo4j%3BOrientDB
+
+JanusGraph (2017)
+ - https://janusgraph.org/
+Fork from TitanDB (2012)
+Which was acquired by Data Stax
+   https://en.wikipedia.org/wiki/DataStax
+Uses native gremlin drivers (Java)
+Gremlin is from Tinkerpop
+ - http://tinkerpop.apache.org/
+
+Orientdb - multi-modal database
+Proprietary query api
+    https://orientdb.org/
+
+RDF index
+RDF = Resource Description Framework - a graph data modeli
+      that formally describes the semantics, or meaning of information. 
+      It also represents metadata, that is, data about data. 
+      RDF consists of triples. ... i
+      The parts of a triple (subject, predicate, object) represent links in a graph.
+
+AWS:
+Amazon Neptune - Fast, reliable graph database built for the cloud
+ - https://aws.amazon.com/neptune/
+
+Azure:
+Neo4j on Azure:
+ - https://neo4j.com/partners/microsoft-azure/
+Cosmos DB can work as Graph DB:
+ - https://docs.microsoft.com/en-us/azure/cosmos-db/graph-introduction
+
+Google Cloud:
+Running JanusGraph with Cloud Bigtable
+ - https://cloud.google.com/architecture/running-janusgraph-with-bigtable
+Neo4j Auro on GCP:
+ - https://neo4j.com/neo4j-for-google-cloud/
+

@@ -1,0 +1,157 @@
+
+"make" utility executes instructions in Makefile
+
+Usually these are instructions on how to compile
+and link parts of a big project following dependencies.
+
+It may be used with many different compilers 
+and with different languages 
+  (C, C++, Java, Fortran, etc.)
+
+You put instructions on how to compile and link 
+things together into one description file, 
+usually called "Makefile". 
+
+Then you run the make (or gmake - GNU make) command. 
+
+It by default reads the Makefile in the current directory 
+(or you can specify the description file explicitly in the 
+command line after a "-f" option) 
+and executes compilation/linking as required.
+
+Here is an example of a simple make file:
+ 
+# this is a comment line
+CC = gcc
+CCFLAGS = -g
+myprogram: mainprog.cc subfile1.o myclass.o
+    ${CC} ${CCFLAGS} mainprog.cc subfile1.o myclass.o
+
+subfile1.o: subfile1.cc myclass.o
+    ${CC} ${CCFLAGS} -c mainprog.cc subfile1.o myclass.o
+
+myclass.o: myclass.cc
+    ${CC} ${CCFLAGS} -c myclass.cc
+
+clean:
+    rm -rf *.o a.out
+
+First 2 lines define macros CC and CCFLAGS and assign values to them.
+(Later they are expanded using syntax ${macroname})
+
+Next line defines entry target called myprogram
+It shows that it depends on other things (mainprog.cc subfile1.o myclass.o).
+
+Next line shows what to do (after other dependencies are processed).
+
+Lower there are similar instructions for subfile1.o and myclass.o
+
+Make will parse those dependencies, check which files were 
+updated and need to be recompiled before linking, and will 
+do all proper compiling/linking
+
+If we type 'make' - it will find the first target called 
+"myprogram" and start parcing dependencies from it.
+So it is equivalent to running 'make myprogram'.
+
+It will find that "myprogram" depends on several things 
+(listed after ":") - so it will search further how they 
+should be processed. 
+
+The dependency subfile1.o is found, and then the myclass.o 
+dependency is found within subfile1.o. 
+
+So make will check the dates, and (if necessary) compile myclass.cc 
+and then subfile1.o, and then we are finally back up to the 
+myprogram dependency. 
+
+Finally all three dependencies are compiled in to create a.out.
+
+Note (important): the commands under the dependencies MUST 
+have a tab before them (not the spaces).
+
+Long lines may be splitted by putting backslash "\" 
+at the end of the line - and continue on the next. 
+There should be no spaces after the "\".
+
+To check the tabs and spaces, issue the command:
+  cat -v -t -e Makefile
+It will show all tabs as ^I and ends of the lines as $.
+
+Note: if we type 'make clean' at the command line, - it
+      will start from the "clean" entry point. It will find, that
+      there is no further dependencies (nothing after the ":") -
+      so it will simply run the command on the next line, that
+      will remove all our *.o files and the executable file a.out
+
+Note: if we type 'make myclass.o' - then only myclass.o
+      target will be processed.
+
+Note: we can specify several targets in te command line,
+      for example: make tag1 tag2 tag3
+
+Note: A Makefile may have many entry points (usually called
+      all, clean, realclean, install, test, etc.).
+
+Note: The ${macro} expressions are used to expand
+      (substitue) the value of the macro/variable.
+      You can define them right on the command line, for example:
+      make CC=gcc myprogram
+
+Note: make always recognizes ${CC} macro as a C compiler,
+      and ${LD} as a linker
+
+Note: make always recognizes shell variables (exported) as
+      macros, for example:  ${PATH}
+
+Note:
+   $@ - current target,
+   $? - list of prerequisites (dependencies) which are
+        newer than the current target,
+
+Note: you can have more than one command line after a target.
+
+Note: you can put more than one command on the same line -
+      separate by the semicolon ";".
+
+Note: you can put more than one command on the same line -
+      separate by the semicolon ";".
+
+Note: there are suffix rules:
+   .c - C source
+   .f - Fortran source
+   .s - assembly language source
+   .o - object module (for both C and Fortran)
+ 
+OBJS = main.o iodat.o dorun.o lo.o
+LIB = /usr/proj/lib/crtn.a
+program : ${OBJS} ${LIB}
+  ${CC} -o $@ ${OBJS} ${LIB}
+
+The example above will automatically compile necessary
+source files (*.c or *.f or *.s) if necessary. You don't
+have to explicitly write these dependencies.
+
+Note: $< - the name of the prerequisite that is being
+      used to make the target - for example the *.c file 
+      in a .c.o rule
+
+Note: you can define new suffix rules
+
+Note: you can include shell commands into the Makefile
+      (each line is excuted separately, 
+       as if you logout-login again).
+
+Note: some useful command options:
+      -f - specify the description file (makefile) explicitly
+      -n - echo commands - but don't execute them
+      -p - print out macro definitions. suffix rules, etc.
+      -s - silent (do not echo commands)
+
+To show the targets:
+    cat GNUmakefile | grep ":"
+
+or
+    alias targets=" perl -ne '/^\S+:/ && print;' "
+    targets GNUmakefile
+

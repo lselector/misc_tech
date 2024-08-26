@@ -1,0 +1,84 @@
+==================================
+SoqlX - explore SF objects, run SOQL queries, save as CSV, etc.
+ - https://www.pocketsoap.com/osx/soqlx/
+
+download, install, login with your fname.lastname@sf.com
+
+==================================
+CLI = Command Line Interface
+
+Download and install sfdx for Mac:
+    - https://developer.salesforce.com/tools/sfdxcli
+
+open terminal and run commands:
+    which sfdx
+    sfdx force:auth:web:login -r https://login.salesforce.com
+
+browser login window should open - login as yourname@dataloader.com
+
+Then run:
+    sfdx force:config:set defaultusername=yourname@dataloader.com --global
+    sfdx force:data:soql:query -q "SELECT Id, Name  FROM ds__c limit 5"
+
+    sfdx -h
+    sfdx --help
+    sfdx commands | grep query 
+    sfdx commands | grep schema
+    sfdx commands | grep describe
+    sfdx force:schema:sobject:describe --help
+    sfdx force:schema:sobject:describe -s DS__c --json
+
+==================================
+Microsoft Visual Studio Code - GUI for DEV
+ - https://code.visualstudio.com/download
+
+==================================
+Automating and scheduling CSV uploads with external script:
+ - https://github.com/forcedotcom/Analytics-Cloud-Dataset-Utils
+
+==================================
+Postman - to do API development
+ - https://www.getpostman.com/
+
+==================================
+Query from Python:
+    from simple_salesforce import Salesforce
+==================================
+Getting Salesforce schema
+
+Adopted from this code:
+ - https://github.com/benedwards44/schemalister/tree/master/getschema
+which is running this online tool:
+ - https://schemalister.herokuapp.com/
+
+Looks like schema information isn't available via SOQL query,
+however there is an API for it.
+
+Apex methods
+ - http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_dynamic_describe_objects_understanding.htm
+
+SOAP API
+ - http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_calls_describesobjects_describesobjectresult.htm
+
+REST API
+ - http://www.salesforce.com/us/developer/docs/api_rest/Content/dome_sobject_describe.htm
+
+Metadata API:
+ - http://www.salesforce.com/us/developer/docs/api_meta/Content/customobject.htm
+
+
+search Google for something like this:
+  site:developer.salesforce.com rest api developer guide
+
+
+Useful links:
+
+SObject Describe
+ - https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm
+
+DescribeFieldResult Class
+ - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_methods_system_fields_describe.htm
+
+==================================
+
+
